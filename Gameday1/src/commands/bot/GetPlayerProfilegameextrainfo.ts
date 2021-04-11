@@ -1,28 +1,29 @@
 import { CommandoClient, Command, CommandMessage } from "discord.js-commando";
 import axios from "axios";
 import { steamKeyApiId } from "../../steamapi/SteamAPIKey";
+import { steamPlayerSummaries } from "../../steamapi/SteamAPIs";
 
-module.exports = class GetGameCount extends Command {
+module.exports = class GetPlayerProfilegameextrainfo extends Command {
     constructor(bot: CommandoClient) {
         super(bot, {
-            name: 'games',
-            aliases: ['euifhiue'],
+            name: 'np',
+            aliases: ['hrth'],
             group: 'bot',
-            memberName: 'games',
-            description: 'shows you information about me.'
+            memberName: 'playing',
+            description: 'shows you what game the user is playing.'
         });
     }
 
     async run(msg: CommandMessage, args) {
-        const steamid = msg.message.content.replace("$games ", "");
+        const steamid = msg.message.content.replace("$np ", "");
 
         const response = axios({
             method: "GET",
-            url: `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamKeyApiId}&steamid=${steamid}&format=json`
+            url: ` ${steamPlayerSummaries}?key=${steamKeyApiId}&steamids=${steamid}`
         }).then(response => {
-            console.log(response.data.response.game_count);
+            console.log(response.data.response.players[0]);
 
-            return response.data.response.game_count;
+            return response.data.response.players[0].gameextrainfo;
         });
      
         return response.then(res => {

@@ -22,9 +22,9 @@ module.exports = class GetPlayerProfile extends Command {
             url: `${steamPlayerSummaries}?key=${steamKeyApiId}&steamids=${steamid}`
         }).then(response => {
             const playerProfile: GetPlayerProfileAPI = response.data.response.players[0];
-            console.log(playerProfile.avatarfull);
+            console.log(playerProfile.profileurl);
 
-            return playerProfile.avatarfull;
+            return playerProfile.profileurl;
         });
      
         return response.then(res => {
