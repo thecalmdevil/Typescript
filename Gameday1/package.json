@@ -11,9 +11,12 @@
   "author": "abyssal512",
   "license": "MIT",
   "dependencies": {
+    "@discordjs/uws": "^10.149.0",
     "axios": "^0.21.1",
+    "bufferutil": "^4.0.0",
     "discord.js": "^11.5.1",
     "discord.js-commando": "^0.10.0",
+    "libsodium-wrappers": "^0.7.3",
     "sqlite": "^3.0.3"
   },
   "devDependencies": {
