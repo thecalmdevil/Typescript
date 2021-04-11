@@ -17,7 +17,7 @@ module.exports = class GetGameCount extends Command {
 
         const response = axios({
             method: "GET",
-            url: `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=9B208A70C5AAE0D188CBD171E5C6C861&steamid=${steamid}&format=json`
+            url: `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamKeyApiId}&steamid=${steamid}&format=json`
         }).then(response => {
             console.log(response.data.response.game_count);
 
