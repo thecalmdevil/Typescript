@@ -1,0 +1,10 @@
+{
+    "folders": [
+		{
+			"path": "..\\..\\.."
+		}
+	],
+    "settings": {
+        "god.tsconfig": "./Gameday1\\tsconfig.json"
+    }
+}
