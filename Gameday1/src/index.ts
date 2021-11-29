@@ -24,8 +24,8 @@ sqlite.open(path.join(__dirname, 'database.sqlite3')).then(database => {
     console.error(`Failed to connect to database: ${e}`)
 })
 
-bot.on("ready", async () => {
-    console.log(`${bot.user.username} is online!`);
-})
+bot.on("ready", async (): Promise<void> => {
+        console.log(`${bot.user.username} is online!`);
+    })
 
 bot.login(token).catch(console.log);
