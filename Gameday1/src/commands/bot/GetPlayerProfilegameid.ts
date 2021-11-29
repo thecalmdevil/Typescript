@@ -3,19 +3,19 @@ import axios from "axios";
 import { steamKeyApiId } from "../../steamapi/SteamAPIKey";
 import { steamPlayerSummaries } from "../../steamapi/SteamAPIs";
 
-module.exports = class GetPlayerProfilegameextrainfo extends Command {
+module.exports = class GetPlayerProfilegameid extends Command {
     constructor(bot: CommandoClient) {
         super(bot, {
-            name: 'np',
-            aliases: ['hrth'],
+            name: 'npid',
+            aliases: ['efeg'],
             group: 'bot',
-            memberName: 'playing',
-            description: 'shows you what game the user is playing.'
+            memberName: 'gameid',
+            description: 'shows you the ID of the game the user is playing.'
         });
     }
 
     async run(msg: CommandMessage, args) {
-        const steamid = msg.message.content.replace("$np ", "");
+        const steamid = msg.message.content.replace("$npid ", "");
 
         const response = axios({
             method: "GET",
@@ -23,11 +23,11 @@ module.exports = class GetPlayerProfilegameextrainfo extends Command {
         }).then(response => {
             console.log(response.data.response.players[0]);
 
-            return response.data.response.players[0].gameextrainfo;
+            return response.data.response.players[0].gameid;
         });
      
-        return response.then(res => msg.channel.send(res)).catch(err => {
-            return msg.channel.send("Invalid SteamID");
-        });
+        return response.then(res => {
+            return msg.channel.send(res);
+        }).catch(_err => msg.channel.send("Invalid SteamID"));
     }
 }
